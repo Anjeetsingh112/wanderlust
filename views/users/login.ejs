@@ -1,0 +1,46 @@
+<%layout("/layouts/boilerplate")%>
+<div class="container">
+  <div class="row">
+    <h1 class="col-12 text-center mt-3 heading">
+      Log In to Wanderlust
+    </h1>
+    <div class="col-12 col-sm-8 col-md-6 col-lg-4 mx-auto mt-3">
+      <form
+        action="/login"
+        method="post"
+        class="needs-validation"
+        novalidate
+      >
+        <!-- Username Input -->
+        <div class="mb-3">
+          <label for="username" class="form-label">Username</label>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            class="form-control"
+            placeholder="Enter your username"
+            required
+          />
+          <div class="valid-feedback">Looks good!</div>
+        </div>
+
+        <!-- Password Input -->
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            class="form-control"
+            placeholder="Enter your password"
+            required
+          />
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-success w-100 mt-3">Sign In</button>
+      </form>
+    </div>
+  </div>
+</div>

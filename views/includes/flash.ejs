@@ -1,0 +1,110 @@
+<% if (success && success.length) { %>
+  <div
+    class="alert alert-success alert-dismissible fade show custom-alert col-12 col-md-8 col-lg-6 mx-auto"
+    role="alert"
+    id="successMessage"
+  >
+    <%= success %>
+    <button
+      type="button"
+      class="btn-close btn-close-sm"
+      data-bs-dismiss="alert"
+      aria-label="Close"
+      onclick="manualClose('successMessage')"
+    >
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+  </div>
+<% } %>
+
+<% if (error && error.length) { %>
+  <div
+    class="alert alert-danger alert-dismissible fade show custom-alert col-12 col-md-8 col-lg-6 mx-auto"
+    role="alert"
+    id="errorMessage"
+  >
+    <%= error %>
+    <button
+      type="button"
+      class="btn-close btn-close-sm"
+      data-bs-dismiss="alert"
+      aria-label="Close"
+      onclick="manualClose('errorMessage')"
+    >
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+  </div>
+<% } %>
+
+<!-- Auto-dismiss and manual close script -->
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    // Auto-dismiss success message after 5 seconds
+    const successMessage = document.getElementById("successMessage");
+    if (successMessage) {
+      setTimeout(() => {
+        successMessage.classList.remove("show");
+        successMessage.classList.add("fade");
+        successMessage.remove();
+      }, 2000);
+    }
+
+    // Auto-dismiss error message after 3 seconds
+    const errorMessage = document.getElementById("errorMessage");
+    if (errorMessage) {
+      setTimeout(() => {
+        errorMessage.classList.remove("show");
+        errorMessage.classList.add("fade");
+        errorMessage.remove();
+      }, 2000);
+    }
+  });
+
+  // Manual close function
+  function manualClose(alertId) {
+    const alertElement = document.getElementById(alertId);
+    if (alertElement) {
+      alertElement.classList.remove("show");
+      alertElement.classList.add("fade");
+      alertElement.remove();
+    }
+  }
+</script>
+
+<!-- Custom CSS for responsiveness and small sizes -->
+<style>
+  .custom-alert {
+    max-width: 50%; /* Adjust for smaller screens */
+    width: 100%; /* Ensure full width */
+    font-size: 0.85rem; /* Compact font size */
+    padding: 8px 12px; /* Smaller padding for compact look */
+    position: relative;
+    z-index: 1030;
+  }
+
+  .btn-close {
+    font-size: 0.8rem; /* Smaller close button */
+    padding: 2px; /* Compact padding for close button */
+    color: #000; /* Set color for the close icon */
+    background: none; /* Remove default background */
+    border: none; /* Remove default border */
+    cursor: pointer; /* Add pointer cursor */
+  }
+
+  .btn-close i {
+    pointer-events: none; /* Prevent interaction with the icon */
+  }
+
+  /* Media query for small devices */
+  @media (max-width: 576px) {
+    .custom-alert {
+      max-width: 90%; /* Adjust for smaller screens */
+      font-size: 0.75rem; /* Even smaller font on small devices */
+      padding: 6px 10px; /* Reduced padding */
+    }
+
+    .btn-close {
+      font-size: 0.7rem; /* Adjust close button size */
+    }
+  }
+</style>

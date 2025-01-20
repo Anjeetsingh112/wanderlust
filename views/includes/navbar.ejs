@@ -1,0 +1,99 @@
+<style>
+  @media (max-width: 768px) {
+    .nav-size {
+      margin: 10px 0 0px 50%;
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 4px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .nav-size {
+      font-size: 0.75rem;
+    }
+  }
+
+  @media (max-width: 360px) {
+    .nav-size {
+      font-size: 0.65rem;
+    }
+  }
+
+  .btn-close {
+    position: absolute;
+    top: -42px;
+    right: 20px;
+    z-index: 1030;
+    display: none; /* Hide close button by default */
+  }
+
+  /* Show the close button when the navbar is expanded */
+  .navbar-collapse.show .btn-close {
+    display: block;
+  }
+</style>
+
+<nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/listings">
+      <i class="fa-regular fa-compass"></i>
+    </a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      id="navbarToggleButton"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse nav-size" id="navbarNavAltMarkup">
+      <!-- Close button -->
+      <button
+        type="button"
+        class="btn-close d-md-none"
+        id="closeButton"
+        aria-label="Close"
+      >
+        <i class="fa-solid fa-xmark"></i> <!-- Add an icon here -->
+      </button>
+
+      <div class="navbar-nav">
+        <a class="nav-link" href="/listings">Explore</a>
+      </div>
+
+      <div class="navbar-nav ms-auto">
+        <a class="nav-link" href="/listings/new">
+          Host with wanderlust&nbsp;&nbsp;<b><i class="fa-solid fa-circle-plus"></i></b>
+        </a>
+        <% if (!currUser) { %>
+        <a class="nav-link" href="/signup"><b>Sign up</b></a>
+        <a class="nav-link" href="/login"><b>Log In </b></a>
+        <% } %>
+        <% if (currUser) { %>
+        <a class="nav-link" href="/logout"><b>Log out</b></a>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<script>
+// Get the toggle button and close button
+const navbarToggleButton = document.getElementById('navbarToggleButton');
+const closeButton = document.getElementById('closeButton');
+const navbarNav = document.getElementById('navbarNavAltMarkup');
+
+// Toggle the navbar collapse when the navbar-toggler is clicked
+navbarToggleButton.addEventListener('click', () => {
+  navbarNav.classList.toggle('collapse'); // Toggle visibility
+  navbarNav.classList.toggle('show'); // Show the navbar content
+});
+
+// Close the navbar when the close button is clicked
+closeButton.addEventListener('click', () => {
+  navbarNav.classList.remove('show'); // Collapse the navbar
+});
+</script>
